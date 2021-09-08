@@ -1,0 +1,26 @@
+Following are the datatypes supported by apex  1. Primitive : Integer, Double, Long, Date, Date Time, String, ID, and Boolean are considered as primitive data types.
+Collections:Apex  , List, Set, Map keys
+Sobjects :enums,collections, Access modifiers
+This should work, if its until 2 decimals
+Example 
+
+Decimal dec;
+String amount;
+if (!string.valueof(dec.format()).right(3).contains('.')){
+    amount = '$' + string.valueof(dec.format()) + '.00';
+}else if (string.valueof(dec.format()).right(2).contains('.')){
+    amount = '$' + string.valueof(dec.format()) + '0';
+}else {
+    amount = '$' + string.valueof(dec.format());
+}
+
+public static String formatMoney(String s) {
+    s = '$' + s;
+    if (!s.contains('.')) {
+        s = s + '.00';
+    } else {
+      Integer dPos = s.indexOf('.');
+      if (s.length() - dPos < 3) { s = s + '0'; }   
+    }
+    return s; 
+}
