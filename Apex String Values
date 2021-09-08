@@ -1,0 +1,20 @@
+public static String formatNumberFields(String unformattedValue, Integer scale) {
+    String formattedValue = Decimal.valueof(unformattedValue).setScale(scale).format();
+    Integer decimalPlaces;
+    String decimalSep = 0.23.format().substring(1, 2);
+
+    if(formattedValue.contains(decimalSep)) {
+        decimalPlaces = formattedValue.split('\\' + decimalSep)[1].length();
+    } else {
+        formattedValue += decimalSep;
+        decimalPlaces = 0;
+    }
+
+    //Add trailing zeros
+    while(decimalPlaces < scale) {
+        formattedValue += '0';
+        decimalPlaces ++;
+    }
+
+    return formattedValue;
+}
